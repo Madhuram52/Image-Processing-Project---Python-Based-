@@ -1,0 +1,50 @@
+/* EditImage.css */
+.edit-container {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .function-buttons {
+    width: 200px;
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .function-buttons button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .function-buttons button:hover {
+    background-color: #ccc;
+  }
+  
+  .features-area {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  .feature-content {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .image-area {
+    padding: 20px;
+  }
+  
+  .image-area img {
+    max-width: 100%;
+    height: auto;
+  }
+  

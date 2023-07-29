@@ -1,0 +1,65 @@
+/* Upload.css */
+.upload-container {
+    background-color: #f8f8f8;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .file-input {
+    display: none;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .selected-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+  
+  .edit-btn {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .edit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .edit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
