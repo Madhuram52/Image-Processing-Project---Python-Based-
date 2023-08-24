@@ -19,8 +19,8 @@ function App() {
       {/* Replace the current entry in the history stack */}
       {/* Clicking the back button will skip the previous route */}
       {/* Navigate will ensure that route reaches / when any invalid route is there after / ..e.g., /asd */}
-      <Route path="/gallery/search" element={<Gallery />} />
       <Route path="/gallery/:imageId" element={<EditImage />} />
+      <Route path="/gallery/search" element={<Gallery />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
