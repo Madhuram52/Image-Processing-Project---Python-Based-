@@ -1,11 +1,15 @@
+from bson import ObjectId
 from flask import Flask, Response, request, jsonify, send_file
 from flask_pymongo import PyMongo
 from bson.binary import Binary
 import os
 import uuid
 import urllib.parse
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+cors = CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
 # URL-encode the password
 password = urllib.parse.quote_plus('mongodb123')
@@ -29,23 +33,35 @@ def upload_image(file):
         return unique_filename
     else:
         return None
-
+print("asfsd")
 @app.route('/api/upload', methods=['POST'])
 def upload_image_route():
     uploaded_file = request.files['image']
     filename = upload_image(uploaded_file)
     if filename:
+        image_collection = mongo.db.images
+        image_data = image_collection.find_one({'filename': filename})
+        image_id = image_data['_id']
+        print(image_id)
         # You can record image metadata in a database here.
-        response_data = {'message': 'Image uploaded successfully', 'filename': filename}
+        response_data = {'message': 'Image uploaded successfully', '_id': str(image_id)}
         return jsonify(response_data), 200
     else:
         response_data = {'message': 'Upload failed'}
         return jsonify(response_data), 400
     
-@app.route('/api/gallery/<string:filename>', methods=['GET'])
-def get_image(filename):
+
+@app.route('/api/gallery/<string:image_id>', methods=['GET'])
+def get_image(image_id):
     image_collection = mongo.db.images
-    image_data = image_collection.find_one({'filename': filename})
+
+    # Ensure the provided image_id is a valid ObjectId
+    try:
+        image_id = ObjectId(image_id)
+    except Exception as e:
+        return jsonify({'message': 'Invalid image ID'}), 400
+
+    image_data = image_collection.find_one({'_id': image_id})
 
     if image_data:
         # Retrieve the image data
@@ -57,6 +73,7 @@ def get_image(filename):
         return response
     else:
         return jsonify({'message': 'Image not found'}), 404
+
 
 if __name__ == '__main__':
     app.run()

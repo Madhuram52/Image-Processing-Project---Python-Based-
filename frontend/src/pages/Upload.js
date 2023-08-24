@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Upload.css'; // Import the CSS file for this component
 
+
+
 const Upload = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate(); // Initialize useNavigate for programmatic navigation
@@ -36,11 +38,14 @@ const Upload = () => {
       });
 
       if (response.ok) {
-        console.log('Image uploaded successfully');
+        const data = await response.json();
+        const imageId = data._id;
         
+        console.log('Image uploaded successfully');
+        console.log('Image ID:', imageId);
         // After successful upload, navigate to the edit image page
-        // navigate('/gallery/:imageid'); // Replace :imageid with the actual image ID
-
+        // navigate('/gallery/'); // Replace :imageid with the actual image ID
+        navigate(`/gallery/${imageId}`);
       } else {
         console.error('Image upload failed');
         // Handle the error, e.g., show an error message to the user.

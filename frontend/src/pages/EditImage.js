@@ -3,26 +3,27 @@ import { useParams } from 'react-router-dom';
 import './EditImage.css'; // Import the CSS file for this component
 
 const EditImage = () => {
-  const { imageid } = useParams();
+  const { imageId } = useParams();
   const [imageURL, setImageURL] = useState(null);
-
   useEffect(() => {
-    // Fetch the image URL from your Flask server based on imageid
-    fetch(`http://localhost:5000/api/gallery/${imageid}`)
+    // Fetch the image URL from your Flask server based on imageId
+    fetch(`http://localhost:5000/api/gallery/${imageId}`)
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return response.url; // Get the URL of the image
         } else {
           throw new Error('Image not found');
         }
       })
-      .then((data) => {
-        setImageURL(data.imageURL);
+      .then((imageUrl) => {
+        setImageURL(imageUrl); // Set the imageURL state with the image URL
       })
       .catch((error) => {
         console.error('Error fetching image:', error);
       });
-  }, [imageid]);
+  }, [imageId]);
+  
+
 
   return (
     <div className="edit-image-container">
