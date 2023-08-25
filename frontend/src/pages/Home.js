@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Home.css'; // Import the CSS file for this component
 import Button from  '../components/FormElements/Button'
 
@@ -13,7 +13,9 @@ const Home = () => {
           cropping, and more. You can also perform background removal and object
           recognition on your images.
         </p>
-        <button className="get-started-btn">Get Started</button>
+        <Link to="/upload">
+          <button className="get-started-btn">Get Started</button>
+        </Link>
       </div>
     </div>
   );
